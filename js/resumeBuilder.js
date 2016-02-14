@@ -22,9 +22,9 @@ var bio = {
     "location" : "Toronto",
     "github" : "https://github.com/RomanTi"
   },
-  "welcomeMsg" : "Hi All! That's Roman's Fake Resume",
+  "welcomeMessage" : "Hi All! That's Roman's Fake Resume",
   "skills" : ["Linux/Windows", "Computer Networks", "Web Dev", "Information Security", "Arduino/Raspeberry Pi"],
-  "bioPic" : "https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAarAAAAJGY2NTlmYTdmLTUwNzgtNDIyNS04YjUyLTk4NDZmYWY1NDM1ZA.jpg"
+  "biopic" : "https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAarAAAAJGY2NTlmYTdmLTUwNzgtNDIyNS04YjUyLTk4NDZmYWY1NDM1ZA.jpg"
 
 };
 
@@ -55,21 +55,20 @@ bio.display = function () {
   var formattedLocation = HTMLlocation.replace("%data%",bio.contacts.location);
   $("#topContacts").append(formattedLocation);
   $("#footerContacts").append(formattedLocation);
-  var formattedWelcomeMsg = HTMLwelcomeMsg.replace("%data%",bio.welcomeMsg);
+  var formattedWelcomeMsg = HTMLwelcomeMsg.replace("%data%",bio.welcomeMessage);
   $("#header").append(formattedWelcomeMsg);
-  var formattedBioPic = HTMLbioPic.replace("%data%",bio.bioPic);
+  var formattedBioPic = HTMLbioPic.replace("%data%",bio.biopic);
   $("#header").append(formattedBioPic);
   bio.skills.display();
 };
 
 
 var education = {
-  "schools": [
-    {
+  "schools": [{
       "name": "Saint-Petersburg State Polytechnical University",
       "location": "Saint-Petersburg, Russia",
       "degree": "Specialist",
-      "major": "Radiotechnics",
+      "majors": ["Radiotechnics"],
       "dates": "2004 - 2010",
       "url": "http://retc.spbstu.ru/"
     },
@@ -77,7 +76,7 @@ var education = {
       "name": "Saint-Petersburg State Polytechnical University",
       "location": "Saint-Petersburg, Russia",
       "degree": "Specialist",
-      "major": "Computer Networks",
+      "majors": ["Computer Networks"],
       "dates": "2010 - 2012",
       "url": "http://www.avalon.ru/HigherEducation/MasterNetworking/"
     }
@@ -106,7 +105,7 @@ var education = {
 
 
 education.display = function() {
-  for (var school in education.schools) {
+  for (var school = 0; school < education.schools.length; school++) {
     if(education.schools.hasOwnProperty(school)) {
       $("#education").append(HTMLschoolStart);
       var formattedSchoolName = HTMLschoolName.replace("%data%",education.schools[school].name);
@@ -116,12 +115,12 @@ education.display = function() {
       $(".education-entry:last").append(formattedSchoolDates);
       var formattedSchoolLocation = HTMLschoolLocation.replace("%data%",education.schools[school].location);
       $(".education-entry:last").append(formattedSchoolLocation);
-      var formattedSchoolMajor = HTMLschoolMajor.replace("%data%",education.schools[school].major);
+      var formattedSchoolMajor = HTMLschoolMajor.replace("%data%",education.schools[school].majors[0]);
       $(".education-entry:last").append(formattedSchoolMajor);
     }
   }
   $("#education").append(HTMLonlineClasses);
-  for (var course in education.onlineCourses) {
+  for (var course = 0; course < education.onlineCourses.length; course++) {
     if(education.onlineCourses.hasOwnProperty(course)) {
       var formattedOnlineTitle = HTMLonlineTitle.replace("%data%",education.onlineCourses[course].title);
       var formattedOnlineSchool = HTMLonlineSchool.replace("%data%",education.onlineCourses[course].school);
@@ -177,15 +176,15 @@ var projects = {
   "projects": [
     {
       "title": "First Animal",
-      "dates": 2012,
+      "dates": "2012",
       "description": "Carriage quitting securing be appetite it declared. High eyes kept so busy feel call in. Would day nor ask walls known. But preserved advantage are but and certainty earnestly enjoyment. Passage weather as up am exposed. And natural related man subject. Eagerness get situation his was delighted. ",
-      "image": "http://lorempixel.com/400/200/animals/"
+      "images": ["http://lorempixel.com/400/200/animals/"]
     },
     {
       "title": "Second Animal",
-      "dates": 2013,
+      "dates": "2013",
       "description": "Travelling alteration impression six all uncommonly. Chamber hearing inhabit joy highest private ask him our believe. Up nature valley do warmly. Entered of cordial do on no hearted. Yet agreed whence and unable limits. Use off him gay abilities concluded immediate allowance. ",
-      "image": "http://lorempixel.com/402/201/animals/"
+      "images": ["http://lorempixel.com/402/201/animals/"]
     }
   ]
 };
@@ -199,7 +198,7 @@ projects.display = function() {
       var formattedProjectTitle = HTMLprojectTitle.replace("%data%",projects.projects[project].title);
       var formattedProjectDates = HTMLprojectDates.replace("%data%",projects.projects[project].dates);
       var formattedProjectDescription = HTMLprojectDescription.replace("%data%",projects.projects[project].description);
-      var formattedProjectImage = HTMLprojectImage.replace("%data%",projects.projects[project].image);
+      var formattedProjectImage = HTMLprojectImage.replace("%data%",projects.projects[project].images[0]);
       $(".project-entry:last").append(formattedProjectTitle);
       $(".project-entry:last").append(formattedProjectDates);
       $(".project-entry:last").append(formattedProjectDescription);
